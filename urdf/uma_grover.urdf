@@ -48,7 +48,7 @@
   </link>
   
   <gazebo reference="base_link"> 
-      <material>Gazebo/Grey</material>
+      <material>Gazebo/Gold</material>
   </gazebo>
   
    <!-- - - - - - - -R T K- - - - - - - -->
@@ -107,7 +107,7 @@
       xyz="0 0 0" />
   </joint>
    <gazebo reference="rtk_Link"> <!--Color for the link -->
-      <material>Gazebo/White</material>
+      <material>Gazebo/Grey</material>
   </gazebo>
   
   <!-- - - - - - - -L I D A R- - - - - - - -->
@@ -167,7 +167,7 @@
   </joint>
   
   <gazebo reference="lidar_Link"> 
-      <material>Gazebo/Black</material>
+      <material>Gazebo/Grey</material>
   </gazebo>
   
    <!-- plugin for the laser -->
@@ -551,12 +551,5 @@
   </joint>
   <gazebo reference="wbl_Link"> 
       <material>Gazebo/Black</material>
-  </gazebo>
-  <gazebo>
-    <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
-      <robotNamespace>/two_wheels_robot</robotNamespace>
-      <robotSimType>gazebo_ros_control/DefaultRobotHWSim</robotSimType>
-      <legacyModeNS>true</legacyModeNS>
-    </plugin>
   </gazebo>
 </robot>
