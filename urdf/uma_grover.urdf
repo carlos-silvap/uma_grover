@@ -297,12 +297,12 @@
   <!-- Plugin for the camera -->
    <gazebo reference="camera_Link">
     <sensor type="camera" name="camera">
-      <update_rate>30.0</update_rate>
+      <update_rate>15.0</update_rate>
       <camera name="camera">
         <horizontal_fov>1.3962634</horizontal_fov>
         <image>
-          <width>640</width>
-          <height>480</height>
+          <width>2208</width>
+          <height>1242</height>
           <format>R8G8B8</format>
         </image>
         <clip>
