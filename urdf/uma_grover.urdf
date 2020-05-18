@@ -110,6 +110,24 @@
       <material>Gazebo/Grey</material>
   </gazebo>
   
+  <plugin name="novatel_gps_sim" filename="libhector_gazebo_ros_gps.so">
+    <!-- To use this plugin you ned to have installed http://wiki.ros.org/hector_gazebo_plugins   sudo apt-get install ros-melodic-hector-gazebo-plugins -->
+    <alwaysOn>1</alwaysOn>
+    <updateRate>10.0</updateRate>
+    <bodyName>gps_base</bodyName>
+    <topicName>fix</topicName>
+    <velocityTopicName>fix_velocity</velocityTopicName>
+    <drift>5.0 5.0 5.0</drift>
+    <gaussianNoise>0.1 0.1 0.1</gaussianNoise>
+    <velocityDrift>0 0 0</velocityDrift>
+    <velocityGaussianNoise>0.1 0.1 0.1</velocityGaussianNoise>
+    <!-- coordinates for itesm campus will be considered as the 
+    center of gazebo world lat: 20.614414,long:  -100.403293-->
+    <referenceLatitude>20.614414</referenceLatitude>
+    <referenceLongitude>-100.403293</referenceLongitude>
+  </plugin>
+  
+  
   <!-- - - - - - - -L I D A R- - - - - - - -->
   <link
     name="lidar_Link">
@@ -170,19 +188,19 @@
       <material>Gazebo/Grey</material>
   </gazebo>
   
-   <!-- plugin for the laser -->
+   <!-- PLUG IN -->
    <gazebo reference="lidar_Link">
     <sensor type="ray" name="head_rplidar">
-      <pose>0 0 0 0 0 0</pose>
+      <pose>-1.0308E-06 0.019482 0.02 0 1.57 1.57</pose>
       <visualize>false</visualize>
-      <update_rate>10</update_rate><!--10 hz as the RP lidar-->
+      <update_rate>15</update_rate><!--10 hz as the RP lidar-->
       <ray>
         <scan>
           <horizontal>
-            <samples>1440</samples>
+            <samples>16000</samples>
             <resolution>1</resolution>
-            <min_angle>-6.28319</min_angle>
-            <max_angle>6.28319</max_angle>
+            <min_angle>-6.283185307179586476925286766560</min_angle>
+            <max_angle>6.283185307179586476925286766560</max_angle>
           </horizontal>
         </scan>
         <range>
@@ -198,7 +216,7 @@
       </ray>
       <plugin name="gazebo_ros_head_hokuyo_controller" filename="libgazebo_ros_laser.so">
         <topicName>/base_scan</topicName>
-        <frameName>base_laser_link</frameName>
+        <frameName>base_link</frameName>
       </plugin>
     </sensor>
    </gazebo>
@@ -281,7 +299,7 @@
     <sensor type="camera" name="camera">
       <update_rate>30.0</update_rate>
       <camera name="camera">
-        <horizontal_fov>1</horizontal_fov>
+        <horizontal_fov>1.3962634</horizontal_fov>
         <image>
           <width>640</width>
           <height>480</height>
@@ -307,7 +325,7 @@
         <imageTopicName>image_raw</imageTopicName>
         <cameraInfoTopicName>camera_info</cameraInfoTopicName>
         <frameName>camera_Link</frameName>
-        <hackBaseline>0.07</hackBaseline>
+        <hackBaseline>0.0</hackBaseline>
         <distortionK1>0.0</distortionK1>
         <distortionK2>0.0</distortionK2>
         <distortionK3>0.0</distortionK3>
@@ -334,6 +352,14 @@
         iyz="2.9649E-12"
         izz="0.045774" />
     </inertial>
+    <surface>
+      <friction>
+        <ode>
+          <mu>0.03</mu>
+          <mu2>0.03</mu2>
+        </ode>
+      </friction>
+    </surface>
     <visual>
       <origin
         xyz="0 0 0"
@@ -393,6 +419,14 @@
         iyz="3.10652450880572E-12"
         izz="0.0457737759766504" />
     </inertial>
+    <surface>
+       <friction>
+         <ode>
+           <mu>0.03</mu>
+           <mu2>0.03</mu2>
+         </ode>
+       </friction>
+     </surface>
     <visual>
       <origin
         xyz="0 0 0"
@@ -551,5 +585,21 @@
   </joint>
   <gazebo reference="wbl_Link"> 
       <material>Gazebo/Black</material>
+  </gazebo>
+  <gazebo>
+    <plugin filename="libgazebo_ros_diff_drive.so" name="differential_drive_controller">
+      <legacyMode>true</legacyMode>
+      <alwaysOn>true</alwaysOn>
+      <updateRate>100</updateRate>
+      <leftJoint>wfl_joint</leftJoint>
+      <rightJoint>wfr_joint</rightJoint>
+      <wheelSeparation>0.50</wheelSeparation>
+      <wheelDiameter>0.30</wheelDiameter>
+      <torque>80000</torque>
+      <commandTopic>cmd_vel</commandTopic>
+      <odometryTopic>odom</odometryTopic>
+      <odometryFrame>odom</odometryFrame>
+      <robotBaseFrame>base_link_simulated</robotBaseFrame>
+    </plugin>
   </gazebo>
 </robot>
