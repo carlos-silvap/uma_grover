@@ -586,20 +586,23 @@
   <gazebo reference="wbl_Link"> 
       <material>Gazebo/Black</material>
   </gazebo>
+  
+  
   <gazebo>
-    <plugin filename="libgazebo_ros_diff_drive.so" name="differential_drive_controller">
-      <legacyMode>true</legacyMode>
-      <alwaysOn>true</alwaysOn>
-      <updateRate>100</updateRate>
-      <leftJoint>wfl_joint</leftJoint>
-      <rightJoint>wfr_joint</rightJoint>
-      <wheelSeparation>0.50</wheelSeparation>
-      <wheelDiameter>0.30</wheelDiameter>
-      <torque>80000</torque>
-      <commandTopic>cmd_vel</commandTopic>
-      <odometryTopic>odom</odometryTopic>
-      <odometryFrame>odom</odometryFrame>
-      <robotBaseFrame>base_link_simulated</robotBaseFrame>
-    </plugin>
-  </gazebo>
+  <plugin name="skid_steer_drive_controller" filename="libgazebo_ros_skid_steer_drive.so">
+    <updateRate>100.0</updateRate>
+    <robotNamespace>/</robotNamespace>
+    <leftFrontJoint>wfl_joint</leftFrontJoint>
+    <rightFrontJoint>wfr_joint</rightFrontJoint>
+    <leftRearJoint>wbl_joint</leftRearJoint>
+    <rightRearJoint>wbr_joint</rightRearJoint>
+    <wheelSeparation>0.5</wheelSeparation>
+    <wheelDiameter>0.3</wheelDiameter>
+    <robotBaseFrame>base_link</robotBaseFrame>
+    <torque>60</torque>
+    <topicName>cmd_vel</topicName>
+    <broadcastTF>false</broadcastTF>
+  </plugin>
+</gazebo>
+  
 </robot>
