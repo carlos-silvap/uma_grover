@@ -192,7 +192,7 @@
    <gazebo reference="lidar_Link">
     <sensor type="ray" name="head_rplidar">
       <pose>-1.0308E-06 0.019482 0.05 0 0 0</pose>
-      <visualize>true</visualize>
+      <visualize>false</visualize>
       <update_rate>15</update_rate><!--15 hz as the RP lidar-->
       <ray>
         <scan>
