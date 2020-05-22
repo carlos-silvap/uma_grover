@@ -1,4 +1,5 @@
 <launch>
+  <arg name="use_sim_time" value="true"/> 
   <include
     file="$(find gazebo_ros)/launch/empty_world.launch" />
   <node
@@ -17,4 +18,7 @@
     pkg="rostopic"
     type="rostopic"
     args="pub /calibrated std_msgs/Bool true" />
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher">
+        <remap from="joint_states" to="/uma_robot/joint_states"/>
+  </node>
 </launch>

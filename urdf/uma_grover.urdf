@@ -114,7 +114,7 @@
     <!-- To use this plugin you ned to have installed http://wiki.ros.org/hector_gazebo_plugins   sudo apt-get install ros-melodic-hector-gazebo-plugins -->
     <alwaysOn>1</alwaysOn>
     <updateRate>10.0</updateRate>
-    <bodyName>gps_base</bodyName>
+    <bodyName>rtk_Link</bodyName>
     <topicName>fix</topicName>
     <velocityTopicName>fix_velocity</velocityTopicName>
     <drift>5.0 5.0 5.0</drift>
@@ -463,7 +463,7 @@
     <child
       link="wfl_Link" />
     <axis
-      xyz="0 0 1" />
+      xyz="0 0 -1" />
   </joint>
   <gazebo reference="wfl_Link"> <!--Color for the link -->
       <material>Gazebo/Black</material>
@@ -581,7 +581,7 @@
     <child
       link="wbl_Link" />
     <axis
-      xyz="0 0 1" />
+      xyz="0 0 -1" />
   </joint>
   <gazebo reference="wbl_Link"> 
       <material>Gazebo/Black</material>
@@ -589,26 +589,28 @@
   
   
   <gazebo>
-  <plugin name="skid_steer_drive_controller" filename="libgazebo_ros_skid_steer_drive.so">
-    <updateRate>100.0</updateRate>
-    <robotNamespace>/</robotNamespace>
-    <leftFrontJoint>wfl_joint</leftFrontJoint>
-    <rightFrontJoint>wfr_joint</rightFrontJoint>
-    <leftRearJoint>wbl_joint</leftRearJoint>
-    <rightRearJoint>wbr_joint</rightRearJoint>
-    <wheelSeparation>0.46935</wheelSeparation>
-    <wheelDiameter>0.3175</wheelDiameter>
-    <robotBaseFrame>base_link</robotBaseFrame>
-    <torque>80</torque>
-    <topicName>cmd_vel</topicName>
-    <commandTopic>cmd_vel</commandTopic>
-    <odometryTopic>odom</odometryTopic>
-    <odometryFrame>odom</odometryFrame>
-    <broadcastTF>false</broadcastTF>
-    <covariance_x>0.000100</covariance_x>
-    <covariance_y>0.000100</covariance_y>
-    <covariance_yaw>0.1000</covariance_yaw>
-  </plugin>
-</gazebo>
+     <plugin name="skid_steer_drive_controller" filename="libgazebo_ros_skid_steer_drive.so">
+       <updateRate>100.0</updateRate>
+       <robotNamespace>/</robotNamespace>
+       <leftFrontJoint>wfl_joint</leftFrontJoint>
+       <rightFrontJoint>wfr_joint</rightFrontJoint>
+       <leftRearJoint>wbl_joint</leftRearJoint>
+       <rightRearJoint>wbr_joint</rightRearJoint>
+       <wheelSeparation>0.46935</wheelSeparation>
+       <wheelDiameter>0.3175</wheelDiameter>
+       <robotBaseFrame>base_link_simulated</robotBaseFrame>
+       <torque>80</torque>
+       <topicName>cmd_vel</topicName>
+       <commandTopic>cmd_vel</commandTopic>
+       <odometryTopic>odom</odometryTopic>
+       <odometryFrame>odom</odometryFrame>
+       <broadcastTF>false</broadcastTF>
+       <covariance_x>0.000100</covariance_x>
+       <covariance_y>0.000100</covariance_y>
+       <covariance_yaw>0.1000</covariance_yaw>
+     </plugin>
+  </gazebo>
+  
+
   
 </robot>
