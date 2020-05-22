@@ -6,6 +6,7 @@
 <!-- - - - - - - -B A S E  L I N K - - - - - - -->
 <robot
   name="uma_grover">
+  
   <link
     name="base_link">
     <inertial>
@@ -611,6 +612,6 @@
      </plugin>
   </gazebo>
   
-
+  
   
 </robot>
