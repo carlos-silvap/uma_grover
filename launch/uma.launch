@@ -1,15 +1,9 @@
 
 <launch>
-  <arg name="x" default="2"/>
-  <arg name="y" default="2"/>
-  <arg name="z" default="0.02"/>
-  <arg name="use_sim_time" default="true"/>
-  
-   <!-- <node
-    name="tf_footprint_base"
-    pkg="tf"
-    type="static_transform_publisher"
-    args="0 0 0 0 0 0 base_link base_footprint 40" />-->
+  <arg name="x" default="-17"/>
+  <arg name="y" default="-15"/>
+  <arg name="z" default="0.4767"/>
+  <!-- <arg name="use_sim_time" default="true"/> -->
   <param name="robot_description" command="cat '$(find uma_grover)/urdf/uma_grover.urdf'" />
   
   <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher">
