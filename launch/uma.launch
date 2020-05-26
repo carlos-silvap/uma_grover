@@ -1,14 +1,14 @@
 
 <launch>
-  <arg name="x" default="-15.988276"/>
-  <arg name="y" default="-17.815695"/>
+  <arg name="x" default="-13.889890"/>
+  <arg name="y" default="-16.744947"/>
   <arg name="z" default="0.486716"/>
   <arg name="yaw" default="3.085409"/>
   <arg name="use_sim_time" default="true"/> 
   <param name="robot_description" command="cat '$(find uma_grover)/urdf/uma_grover.urdf'" />
   
   <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher">
-        <remap from="joint_states" to="/uma_robot/joint_states"/>
+     <remap from="joint_states" to="/uma_robot/joint_states"/>
   </node>
   
   <node
